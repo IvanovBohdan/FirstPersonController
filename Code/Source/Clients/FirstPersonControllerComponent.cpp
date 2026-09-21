@@ -2046,10 +2046,12 @@ namespace FirstPersonController
             // Done applying rotations to the character for multiplayer, camera rotations will be applied on frame ticks
             if (tickTimestepNetwork == 2)
             {
+#ifdef NETWORKFPC
                 if (!m_performedRotationOnTick)
                     m_cumulativeLookRotationDelta += m_networkFPCControllerObject->GetLookRotationDelta();
                 else
                     m_cumulativeLookRotationDelta = m_networkFPCControllerObject->GetLookRotationDelta();
+#endif
                 m_performedRotationOnTick = false;
                 return;
             }
